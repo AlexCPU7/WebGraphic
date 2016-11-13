@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+function draw(f) {
+    var cnv = document.createElement('canvas'),
+        ctx = cnv.getContext("2d"),
+        rdr = new FileReader(),
+        im  = new Image(),
+        ext = format.value;
+         
+    rdr.onload = function() {
+        im.onload = function() {
+            cnv.width = this.width;
+            cnv.height = this.height;                
+            ctx.drawImage(this, 0, 0);
+            image.src = picture.innerHTML = cnv.toDataURL(ext)
+        }
+        im.src = this.result
+    }
+     
+    rdr.readAsDataURL(f)
+}
+</script>
+</head>
+<body>
+<select id="format">
+    <option value="image/png">Format PNG</option>
+    <option value="image/jpeg">Format JPEG</option>
+</select>
+<input type="file" onchange="draw(this.files[0])" />
+<div></div>
+<div id="picture"></div>
+    <div >
+        
+		<canvas id="image"></canvas>
+    </div>
+</body>
+</html>

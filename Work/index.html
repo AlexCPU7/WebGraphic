@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link rel="stylesheet" type="text/css" href="css/style.css">
+       <title>Canvas</title>
+       <script src="js/all.js"></script>
+       <script src="js/file.js"></script> 
+   </head>
+   <body>
+       <div class="top">
+           <button onclick="clearCanvas()">Очистить Canvas</button>  
+	   </div>
+       
+       <div class="midLeft">
+                      
+           <div class="block1"></div>           
+           <!--<div class="block2" onclick="changeColor('rgb(100,21,29)', 'red')"></div>-->
+           <hr>
+           <div class="block2a">
+               <img src="img/instruments/1.png" alt="Карандаш" title="Карандаш" onclick="fourTool('#000000', 1, this)">
+               <img src="img/instruments/2.png" alt="Заливка" title="Заливка" onclick="fourTool( this)">
+               <img src="img/instruments/3.png" alt="Стиратка" title="Стиратка" onclick="fourTool('#ffffff', 15, this)">
+               <img src="img/instruments/4.png" alt="Текст" title="Текст" onclick="fourTool(this)">        
+           </div>
+           <hr>
+           <div class="block3">
+               <img src="img/color/1.png" alt="Цвет" onclick="changeColor('#ffffff', '#ffffff', this)">
+               <img src="img/color/2.png" alt="Цвет" onclick="changeColor('#000000', '#000000', this)">
+               <img src="img/color/3.png" alt="Цвет" onclick="changeColor('#c3c3c3', '#c3c3c3', this)">
+               <img src="img/color/4.png" alt="Цвет" onclick="changeColor('#7f7f7f', '#7f7f7f', this)">  
+               <img src="img/color/5.png" alt="Цвет" onclick="changeColor('#b97a57', '#b97a57', this)">
+               <img src="img/color/6.png" alt="Цвет" onclick="changeColor('#880015', '#880015', this)">
+               <img src="img/color/7.png" alt="Цвет" onclick="changeColor('#ffaec9', '#ffaec9', this)">
+               <img src="img/color/8.png" alt="Цвет" onclick="changeColor('#ed1c24', '#ed1c24', this)">  
+               <img src="img/color/9.png" alt="Цвет" onclick="changeColor('#ffc90e', '#ffc90e', this)">  
+               <img src="img/color/10.png" alt="Цвет" onclick="changeColor('#ff7f27', '#ff7f27', this)">
+               <img src="img/color/11.png" alt="Цвет" onclick="changeColor('#efe4b0','#efe4b0', this)">
+               <img src="img/color/12.png" alt="Цвет" onclick="changeColor('#fff200', '#fff200', this)">
+               <img src="img/color/13.png" alt="Цвет" onclick="changeColor('#b5e61d', '#b5e61d', this)">  
+               <img src="img/color/14.png" alt="Цвет" onclick="changeColor('#22b14c', '#22b14c', this)">
+               <img src="img/color/15.png" alt="Цвет" onclick="changeColor('#99d9ea', '#99d9ea', this)">
+               <img src="img/color/16.png" alt="Цвет" onclick="changeColor('#00a2e8', '#00a2e8', this)">  
+               <img src="img/color/17.png" alt="Цвет" onclick="changeColor('#7092be', '#7092be', this)">
+               <img src="img/color/18.png" alt="Цвет" onclick="changeColor('#3f48cc', '#3f48cc', this)">
+               <img src="img/color/19.png" alt="Цвет" onclick="changeColor('#c8bfe7', '#c8bfe7', this)">
+               <img src="img/color/20.png" alt="Цвет" onclick="changeColor('#a349a4', '#a349a4', this)">  
+           </div>
+           <div class="block3a">
+			   <input type="color" id="col" onclick="funCol()" src="img/color/All.png" />
+           </div>
+           <hr>
+           <div class="block4">
+               <img src="img/thickness/1.png" alt="Тонкая кисть" title="Тонкая кисть" onclick="changeThickness(1, this)">
+               <img src="img/thickness/2.png" alt="Нормальная кисть" title="Нормальная кисть" onclick="changeThickness(3, this)"> 
+               <img src="img/thickness/3.png" alt="Толстая кисть" title="Толстая кисть" onclick="changeThickness(6, this)">    
+               <img src="img/thickness/4.png" alt="Очень толстая кисть" title="Очень толстая кисть" onclick="changeThickness(9, this)">    
+           </div>
+           <hr>           
+           <!--<div class="block5"></div>-->
+	   </div>
+       <div class="midRight">
+           <canvas id="drawingCanvas" width="1868" height="1081"></canvas>
+       </div>
+   </body>
+</html>
