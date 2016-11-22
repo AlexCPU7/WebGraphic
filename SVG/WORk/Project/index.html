@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>HTML</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <script type="text/javascript" src="javascript.js"></script>
+   </head>
+   <body>
+   	
+   	<svg width="600" height="400" onclick="kek('green')" onmousemove="console.log(event.clientX + ' / ' + event.clientY)">
+   		
+        <rect id = "s" x="0" y="0" width="200" height="200" style="fill: none; stroke:red; stroke-width: 2;"/>
+        
+        <rect id="myrect" x="40" y="50" width="50" height="25"
+ fill="red" stroke="black"
+ />
+
+      
+   	
+	</svg>
+
+	<svg width="200px" height="200px" viewBox="0 0 200 200">
+	<g id="square">
+	<rect x="10" y="10" width="20" height="20" style="fill: none; stroke: black;"/>
+	</g>
+	<use xlink:href="#square" transform="scale(2)"/>
+	</svg>
+       
+<svg width="200px" height="200px" viewBox="0 0 200 200">
+<g id="square">
+	<rect x="0" y="0" width="20" height="20" style="fill: none; stroke:black; stroke-width: 2;"/>
+</g>
+<use xlink:href="#square" transform="translate(100,50)"/>
+    
+    <rect x="10" y="50" width="100" height="30" rx="3"
+ fill="cyan" stroke="blue" stroke-width="1">
+ <set attributeName="stroke-width" to="3"
+ begin="mousedown" end="mouseup"/>
+</rect> 
+    
+</svg>
+       
+       
+
+
+	<button onclick="kek('black')">Do it</button>
+   </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Событие onmousemove</title>
+  <script>
+   function mouseCoords(e) {
+    // Для браузера IE
+    if (document.all)  { 
+      x = event.x + document.body.scrollLeft; 
+      y = event.y + document.body.scrollTop; 
+    // Для остальных браузеров
+    } else {
+      x = e.pageX; // Координата X курсора
+      y = e.pageY; // Координата Y курсора
+    }
+    document.getElementById("coords").innerHTML = "X : " + x + ", Y : " + y;
+   }
+  </script>
+  <style type="text/css">
+   html, body {
+    height: 100%; /* Высота документа */ 
+    margin: 0; /* Убираем оступы на странице */
+   }
+   #coords {
+    background: #333; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    padding: 5px; /* Поля вокруг текста */
+   }
+</style>
+</head>
+<body onmousemove="mouseCoords(event)">
+<div id="coords">&nbsp;</div>
+</body>
+</html>
