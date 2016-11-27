@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
+<head>
+  <title>Canvas Photo Editor</title>
+</head>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/raphael.js"></script>
+<script type="text/javascript" src="/js/editor.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+<div id="menu">
+<input type="button" value="New" onclick="newSvg()" />
+<input type="button" value="Open" onclick="openImg()" />
+<input type="button" value="Save" onclick="saveSvg()" />
+<input type="button" value="ForeGr" onclick="foreObj()" />
+<input type="button" value="BackGr" onclick="backObj()" />
+<input type="button" value="Del" onclick="delObj()" />
+<input type="button" value="\" onclick="line()" />
+<input type="button" value="O" onclick="circ()" />
+<input type="button" value="0" onclick="elips()" />
+<input type="button" value="Rect" onclick="rect()" />
+<input type="button" value="T" onclick="addText()" />
+<input type="button" value="+" onclick="ZoomIn()" />
+<input type="button" value="-" onclick="ZoomOut()" />
+</div>
+<div id="canvas"></div>
+<div class="title">Objects:</div>
+<form name="obj">
+<select id="select" size="8" onchange="changeCurObject()">
+</select>
+</form>
+<div class="title">Attributes:</div>
+<textarea id="attr" onblur="setAttr()"></textarea>
+</body>
+</html>

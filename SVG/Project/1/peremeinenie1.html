@@ -1,0 +1,189 @@
+<svg version="1.1"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     width="500" height="400"
+     onload="init(evt)"
+     onmousemove="drag(evt)"
+     onmouseup="deselect()">
+    
+    <style>
+        text{
+            font-size: 12px;
+            font-family: monospace;
+        }
+        .variable{
+            font-weight: bold;
+            cursor: url("mycursor.png"), w-resize;
+        }
+        .variable:hover{
+            text-decoration: underline;
+        }
+        .background{
+            fill: none;
+            stroke: #444;
+            stroke-width: 1;
+            stroke-dasharray: 5, 5;
+        }
+        .point1{
+            fill: #28A86B;
+        }
+        .point2{
+            fill: #6495ED;
+        }
+        .end_point{
+            stroke: #FFF;
+            stroke-width: 0.5;
+        }
+        #example_shape{
+            stroke: #666;
+            stroke-width: 2;
+            fill: none;
+        }
+        .control_point{
+            fill-opacity: 0;
+            stroke-opacity: 0;
+            stroke: #888;
+            stroke-width: 2;
+            cursor: pointer;
+        }
+        .control_point:hover{
+            stroke-opacity: 0.5;
+        }
+        .invisible{
+            pointer-events: none;
+        }
+    </style>
+
+    <script type="text/ecmascript">
+        var svgDoc;
+        var selectedPoint = 0;
+        var selectedVar = -1;
+        var currentX = 0;
+        var currentY = 0;
+        
+        var example_shape;
+        var control_point;
+        var control_points;
+        var equation;
+        var text_variables;
+        var variable_names = ["x", "y", "width", "height"];
+
+        function init(evt) {
+            if ( window.svgDocument == null ) {
+                svgDoc = evt.target.ownerDocument;
+            }
+
+            example_shape  = svgDoc.getElementById('example_shape');
+            control_points = [svgDoc.getElementById("control_point0"),
+                              svgDoc.getElementById("control_point1")];
+            equation       =  svgDoc.getElementById('equation'); 
+            text_variables = [];
+            for (var i=0; i<4; i++){ text_variables.push(svgDoc.getElementById('variable' + i)) }
+        };
+        
+        function selectElement(evt, point){
+            selectedPoint = point;
+            currentX = evt.clientX;
+            currentY = evt.clientY;
+        };
+        
+        function selectVariable(evt, n){
+            selectedVar = n;
+            currentX = evt.clientX;
+            equation.setAttributeNS(null, "class", "invisible");
+            control_point = control_points[Math.floor(n/2)];
+        }
+        
+        function drag(evt){
+            if (selectedPoint != 0){
+                var dx = evt.clientX - currentX;
+                var dy = evt.clientY - currentY;
+                
+                var x = parseInt(example_shape.getAttributeNS(null, "x")) + dx;
+                var y = parseInt(example_shape.getAttributeNS(null, "y")) + dy;
+                
+                if (selectedPoint === 1){
+                    var width = parseInt(example_shape.getAttributeNS(null, "width"));
+                    var height = parseInt(example_shape.getAttributeNS(null, "height"));
+                    
+                    example_shape.setAttributeNS(null, "x", x);
+                    example_shape.setAttributeNS(null, "y", y);
+                    control_points[0].setAttributeNS(null, "transform", "translate(" + x + "," + y + ")");
+                    text_variables[0].firstChild.data = x;
+                    text_variables[1].firstChild.data = y;
+                    
+                } else {
+                    var width = parseInt(example_shape.getAttributeNS(null, "width")) + dx;
+                    var height = parseInt(example_shape.getAttributeNS(null, "height")) + dy;
+                    
+                    if (width < 1) { width = 1;}
+                    if (height < 1) { height = 1;}
+                    
+                    example_shape.setAttributeNS(null, "width", width);
+                    example_shape.setAttributeNS(null, "height", height);
+                    text_variables[2].firstChild.data = width;
+                    text_variables[3].firstChild.data = height;
+                }
+
+                x = x + width;
+                y = y + height;
+                control_points[1].setAttributeNS(null, "transform", "translate(" + x + "," + y + ")");
+                currentX = evt.clientX;
+                currentY = evt.clientY;
+            }
+            else if (selectedVar != -1) {
+            	var dx = evt.clientX - currentX;
+            	var v = parseInt(text_variables[selectedVar].firstChild.data) + dx;
+            	
+                text_variables[selectedVar].firstChild.data = v
+                example_shape.setAttributeNS(null, variable_names[selectedVar], v);
+            	
+                var x1 = parseInt(example_shape.getAttributeNS(null, variable_names[0]));
+                var y1 = parseInt(example_shape.getAttributeNS(null, variable_names[1]));
+                var x2 = parseInt(example_shape.getAttributeNS(null, variable_names[2])) + x1;
+                var y2 = parseInt(example_shape.getAttributeNS(null, variable_names[3])) + y1;
+                
+            	if(selectedVar < 2){
+        			control_points[0].setAttributeNS(null, "transform", "translate(" + x1 + "," + y1 + ")");
+        			control_points[1].setAttributeNS(null, "transform", "translate(" + x2 + "," + y2 + ")");
+            	} else {
+        			control_points[1].setAttributeNS(null, "transform", "translate(" + x2 + "," + y2 + ")");
+            	}
+
+            	currentX = evt.clientX;
+            }
+        };
+        
+        function deselect(){
+            selectedPoint = 0;
+            selectedVar = -1;
+            equation.setAttributeNS(null, "class", "");
+        };
+    
+     </script>
+    
+    <rect class="background" x="0.5" y="0.5" width="499" height="179" />
+    <rect id="example_shape" x="120" y="40" width="100" height="60" />
+    
+    
+    
+    <g id="control_point0" transform="translate(120,40)" >
+        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 1)" />
+        <circle class="point1 invisible" cx="0" cy="0" r="3" />
+    </g>
+
+    <g id="control_point1" transform="translate(220,100)" >
+        <circle class="control_point" cx="0" cy="0" r="10" onmousedown="selectElement(evt, 2)" />
+        <circle class="point2 invisible" cx="0" cy="0" r="3" />
+    </g>
+
+    <text  id="equation" x="40" y="170">
+        <tspan>&lt;rect</tspan>
+        <tspan>x="</tspan><tspan      class="point1 variable" id="variable0" onmousedown="selectVariable(evt, 0)">120</tspan><tspan>"</tspan>
+        <tspan>y="</tspan><tspan      class="point1 variable" id="variable1" onmousedown="selectVariable(evt, 1)">40</tspan><tspan>"</tspan>
+        <tspan>width="</tspan><tspan  class="point2 variable" id="variable2" onmousedown="selectVariable(evt, 2)">100</tspan><tspan>"</tspan>
+        <tspan>height="</tspan><tspan class="point2 variable" id="variable3" onmousedown="selectVariable(evt, 3)">60</tspan><tspan>"</tspan>
+        <tspan>/&gt;</tspan>
+    </text>
+    
+</svg>

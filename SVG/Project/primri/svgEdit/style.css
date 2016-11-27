@@ -1,0 +1,54 @@
+html, body, #canvas {
+  margin: 0;
+  padding: 0px;
+}
+
+body {
+  padding: 3px;
+  width: 990px;
+}
+
+#canvas {
+  width: 800px;
+  height: 600px;
+  border: 1px solid #cccccc;
+  float: left;
+  /*overflow: scroll;*/
+}
+
+.title {
+  margin: 6px 0px 0px 10px;
+  float: left;
+  width: 170px;
+  font-weight: bold;
+}
+
+#attr {
+  border: 1px solid #cccccc;
+  margin: 0px 0px 0px 10px;
+  float: left;
+  width: 170px;
+  height: 400px;
+}
+
+#select {
+  border: 1px solid #cccccc;
+  margin: 0px 0px 0px 10px;
+  float: left;
+  width: 170px;
+}
+
+form {
+  display: inline;
+}
+
+#menu {
+  margin-bottom: 3px;
+  width: 950px;
+}
+
+input {
+  min-width: 60px;
+  width:auto !important;
+  width: 60px;
+}
