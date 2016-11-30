@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	var tool;
 	$('#painter').on('click',function() {
@@ -53,11 +54,39 @@ $(document).ready(function() {
 
 
 
-
-
+    var col;
+    $('#butRed').on('click',function() {
+		col = 'stroke:red';
+	});
+    $('#butGreen').on('click',function() {
+		col = 'stroke:green';
+	});
+    $('#butBlue').on('click',function() {
+		col = 'stroke:blue';
+	});
+    
+    /*var razmer;
+    $('#but1').on('click',function() {
+		razmer = 'stroke-width:1';
+	});
+    $('#but2').on('click',function() {
+		razmer = 'stroke-width:3';
+	});
+    $('#but3').on('click',function() {
+		razmer = 'stroke-width:6';
+	});
+    $('#but4').on('click',function() {
+		razmer = 'stroke-width:9';
+	});*/
+    
+    //var rez = col;
+    
 	function newEl(name,attr){  // Создаем новый элемент
   		var newSVG = document.createElementNS('http://www.w3.org/2000/svg', name);
-  		newSVG.setAttribute('fill','rgba(255,255,255,0)');
+  		newSVG.setAttribute('fill', 'rgba(255,255,255,0)');
+        newSVG.setAttribute('id', 'line');
+        newSVG.setAttribute('style', col);
+        //newSVG.setAttribute('style', razmer);
   		for (var k in attr){
   			newSVG.setAttribute(k,attr[k]);
   		}
@@ -97,6 +126,12 @@ $(document).ready(function() {
 			y: posy - coordTop
 		}
 	}
+    
+    function color(col){
+        var item = document.getElementById("line");
+        item.style.stroke = col;
+    }
+    
 
 })
 

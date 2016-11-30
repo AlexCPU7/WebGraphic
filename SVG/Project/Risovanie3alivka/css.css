@@ -1,5 +1,29 @@
-* {user-select: none;-webkit-user-select: none;-moz-user-select: none;}
-ul li {cursor: pointer;}
-#svg-wrap {position: relative; width:800px; height: 600px; border: 1px solid #ccc;}
-svg {width:100%; height: 100%; background: #fff; }
-svg polyline { stroke:rgb(0,0,0);stroke-width:1;Stroke-linecap:round;Stroke-linejoin: round;}
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+ul li {
+    cursor: pointer;
+}
+
+#svg-wrap {
+    position: relative; 
+    width:800px; 
+    height: 600px; 
+    border: 1px solid #ccc;
+}
+
+svg {
+    width:100%; 
+    height: 100%; 
+    background: #fff; 
+}
+
+#line { 
+    stroke:rgb(0,0,0);
+    stroke-width:1;
+    Stroke-linecap:round;
+    Stroke-linejoin: round;
+}
